@@ -8,9 +8,22 @@
 |Saber más sobre un comando específico|`git help "comando"`            |
 |Nombre global|`git config --global user.name "Nombre"`|
 |Email global|`git config --global user.email "nuestro@email.com"`|
+|Configurar rama por defecto|`git config --global init.defaultBranch nombre-rama`|
 |Ver configuración global|`git config --global -e`|
 
 Al realizar estas configuraciones ya no tendríamos que configurar los usuarios de git cada vez que realicemos **commits** o hagamos **push**.
+
+## Crear alias
+
+|                |Comando                          |Ejemplo|
+|----------------|-------------------------------|-------------------------------|
+|Crear alias|`git config --global alias."alias" "codigo"`|`git config --global alias.lg "log --oneline --decorate --all --graph"`|
+|Otro ejemplo|`git config --global alias."alias" "codigo"`|`git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"`|
+|Otro ejemplo|`git config --global alias."alias" "codigo"`|`git config --global alias.s "status -s -b"`|
+|Ver alias que hemos creado|`git config --global -e`|Sin ejemplo|
+|Ver listado de datos globales y alias|`git config --global -l`|Sin ejemplo|
+
+Estos alias se crean con el fin de simplificar las instrucciones que le damos a Git.
 
 ## Iniciando un proyecto
 
@@ -38,6 +51,8 @@ Al realizar estas configuraciones ya no tendríamos que configurar los usuarios 
 |Agregar todos los archivos en una carpeta con cierta extensión|`git add pdfs/*.pdf`|
 
 ## Revertir commit
+
+`HEAD^` hace referencia al commit anterior.
 
 |                |Comando                          |
 |----------------|-------------------------------|
@@ -125,16 +140,9 @@ Ya en este punto habrá detectado que el archivo fue eliminado y podremos hacer 
 
 Para ignorar el archivo simplemente creamos un archivo con nombre **.gitignore** y escribimos el nombre del archivo/carpeta que no queremos agregar a nuestro repositorio (para todos los archivos con una extensión en particular escribimos *.extensión y para carpetas node_modules/).
 
-## Crear alias
+## Seguir carpetas vacías
 
-|                |Comando                          |Ejemplo|
-|----------------|-------------------------------|-------------------------------|
-|Crear alias|`git config --global alias."alias" "codigo"`|`git config --global alias.lg "log --oneline --decorate --all --graph"`|
-|Otro ejemplo|`git config --global alias."alias" "codigo"`|`git config --global alias.s "status -s -b"`|
-|Ver alias que hemos creado|`git config --global -e`|Sin ejemplo|
-|Ver listado de datos globales y alias|`git config --global -l`|Sin ejemplo|
-
-Estos alias se crean con el fin de simplificar las instrucciones que le damos a Git.
+Para agregar carpetas vacías que por defecto Git no sigue debido a que no tienen cambios dentro podemos agregar un archivo llamado **.gitkeep** dentro de la carpeta, esto permitirá subir la carpeta al repositorio.
 
 ## Errores
 
@@ -152,6 +160,7 @@ Una rama es una línea de tiempo de commits, estas nos ayudarán cuando queramos
 |Crear rama|`git branch nombre-rama`|
 |Crear rama y moverse a ella en un comando|`git checkout -b nombre-rama`|
 |Ver ramas (la verde es la rama en la que estamos actualmente)|`git branch`|
+|Cambiar nombre de la rama|`git branch -m nombre-rama nombre-nuevo`|
 |Cambiar de rama|`git checkout nombre-rama`|
 |Ver diferencias entre ramas|`git diff rama-1 master-o-rama-2`|
 |Eliminar rama (hacer luego de hacer merge)|`git branch -d nombre-rama`|
